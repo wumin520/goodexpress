@@ -1,4 +1,4 @@
-require('babel-register')
+require('babel-polyfill')
 var express = require('express');
 const Resource = require('express-resource')
 var app = express();

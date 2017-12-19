@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js --exec babel-node --presets es2015,stage-2",
+    "start": "nodemon app.js --exec babel-node",
     "dev": "export NODE_ENV=development && export DEBUG=express:* && supervisor -w server,routes,app.js app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf lib && babel src -d lib",
+    "serve": "node lib/app.js"
   },
   "author": "wumin",
   "license": "MIT",
@@ -20,8 +22,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
     "nodemon": "^1.12.1"
   }
 }

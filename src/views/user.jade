@@ -1,0 +1,19 @@
+html(lang='cn')
+    head
+    body
+        h1 Advertisers
+
+        #advs
+            for adver in advs
+                h2!= adver.id
+                div= adver.balance
+        ul
+            li(class='sd') Item A
+            li Item B
+            li Item C
+        ul
+            each val, index in {1:'one',2:'two',3:'three'}
+                li= index + ': ' + val
+
+
+
