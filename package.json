@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js --exec babel-node",
+    "start": "nodemon src/app.js --exec babel-node",
     "dev": "export NODE_ENV=development && export DEBUG=express:* && supervisor -w server,routes,app.js app",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf lib && babel src -d lib",
-    "serve": "node lib/app.js"
+    "build": "rm -rf lib && babel src -d lib && cp -rf src/views lib/views",
+    "serve": "node lib/app.js",
+    "pm2": "pm2 start lib/app.js"
   },
   "author": "wumin",
   "license": "MIT",
