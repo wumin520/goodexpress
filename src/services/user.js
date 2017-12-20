@@ -1,11 +1,6 @@
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : '127.0.0.1',
-    port     : '3307',
-    user     : 'root',
-    password : '',
-    database: 'advertisers'
-});
+const mysql = require('mysql');
+const options = gConfig.mysql.userDbOptions
+const connection = mysql.createConnection(options);
 
 let promise = new Promise((resolve, reject) => {
     let result = 0
