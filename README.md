@@ -29,3 +29,39 @@ npm install -g strongloop
 
 ### Follow your logs live in the console
 slc ctl log-dump myapp1 --follow
+
+### Process Manager
+npm install -g pm2
+
+### start app
+* pm2 start src/app.js
+* pm2 list
+* pm2 logs 0
+
+### docker 根据Dockerfile生成镜像
+``` bash
+docker build -t username/repository:tag .
+```
+
+### docker 运行容器
+``` # bash
+* docker run -i -t -p 5001:5001 --name=wumin-e01 wumin/express:0.1 /bin/bash
+# i:打开容器的标准输入。
+
+# t:告诉docker为容器建立一个命令行终端。
+# name:指定容器名称，可以不填(随机)，建议根据具体使用功能命名，便于管理。
+# centos:告诉我们使用什么镜像来启动容器。
+# /bin/bash:告诉docker要在容器里面执行此命令。
+```
+
+### docker 删除容器
+``` # bash
+* docker rm $(docker ps -a -q)  # 删除所有停止的容器
+* docker ps -n=2 # -n=x选项，会列出最后创建的x个容器。
+```
+
+### docker 镜像管理
+```
+*
+
+### docker 启动容器

@@ -4,19 +4,21 @@ const Resource = require('express-resource')
 var app = express();
 const orm = require('orm')
 
-app.set('views', './views')
+let resolve = (src) => {
+    return __dirname + src
+}
+
+app.set('views', resolve('/views'))
 app.set('view engine', 'jade')
 
-var options = {
-    protocol: 'mysql',
-    username: 'root',
-    password: '',
-    host: '127.0.0.1',
-    port: '3307',
-    database: 'mytest',
-    query:    {pool: true}
+let config = require('./dev.config')
+const configPath = process.env.MYAPP_CONFIG
+if (configPath) {
+    config = require(configPath)
+    console.log(configPath)
 }
-app.use(orm.express(options, {
+global.gConfig = config
+app.use(orm.express(config.mysql.options, {
     define: function (db, models, next) {
         models.person = db.define("person", {
             name      : String,
@@ -46,7 +48,7 @@ app.get('/', function (req, res) {
 app.resource('forums', require('./routes/forum'));
 app.resource('persons', require('./routes/person'))
 
-var server = app.listen(5000, function () {
+var server = app.listen(8888, function () {
     var host = server.address().address;
     var port = server.address().port;
 
