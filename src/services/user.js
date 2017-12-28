@@ -1,31 +1,25 @@
-const mysql = require('mysql');
-const options = gConfig.mysql.userDbOptions
-const connection = mysql.createConnection(options);
+const db = global.db.db_mysql()
 
-let promise = new Promise((resolve, reject) => {
-    let result = 0
-    connection.connect();
-    connection.query('SELECT * FROM account', function(err, rows, fields) {
-        if (err) throw err;
-        console.log('The solution is: ', rows[0].id);
-        resolve(rows)
-        result = rows
+db.connect();
+export const getAll = () => {
+  let promise = new Promise((resolve, reject) => {
+    let result = []
+    db.query('SELECT * FROM account', function (err, rows, fields) {
+      if (err) {
+        reject(err)
+        throw err;
+      }
+      console.log('The solution is: ', rows[0].id);
+      console.log(fields)
+      resolve(rows)
+      result = rows
     });
-    connection.end();
+    // db.end();
     return result
-})
+  })
+  return promise
+}
 
-// let getSolution = (resolve) => {
-//     let result = 0
-//     connection.connect();
-//     connection.query('SELECT * FROM account', function(err, rows, fields) {
-//         if (err) throw err;
-//         console.log('The solution is: ', rows[0].id);
-//         console.log(rows)
-//         resolve(rows)
-//         result = rows
-//     });
-//     connection.end();
-//     return result
-// }
-export default promise
+export default {
+  getAll
+}

@@ -65,19 +65,41 @@ log4js.configure({
             //     return 'admin';
             // }
             // }
+        },
+        'email': {
+            type: 'smtp',
+            SMTP: {
+                host: 'smtp.exmail.qq.com',
+                port: 25,
+                auth: {user:'wu.min@qianka.com', pass: 'Wumin123321'}
+            },
+            recipients: 'wuminqinglewuhen@sina.com',
+            subject: 'test attachments',
+            sender: 'wu.min@qianka.com',
+            attachments: {
+                enable: true,
+                filename: 'latest.log',
+                message: 'See the attachment for the latest logs'
+            },
+            sendInterval: 3600
         }
     },
     categories: {
-        default: { appenders: ['logstash'], level: 'info' }
+        default: { appenders: ['logstash', 'email'], level: 'info' }
     }
 });
 
-logger = log4js.getLogger('logstash');
-logger.info("important log message");
+const logstash = log4js.getLogger('logstash');
+const email = log4js.getLogger('email');
+// logger.info("important log message");
+// logger.trace('Entering cheese testing');
+// logger.debug('Got cheese.');
+// logger.info('Cheese is Gouda.');
+// logger.warn('Cheese is quite smelly.');
+// logger.error('Cheese is too ripe!');
+// logger.fatal('Cheese was breeding ground for listeria.');
 
-logger.trace('Entering cheese testing');
-logger.debug('Got cheese.');
-logger.info('Cheese is Gouda.');
-logger.warn('Cheese is quite smelly.');
-logger.error('Cheese is too ripe!');
-logger.fatal('Cheese was breeding ground for listeria.');
+module.exports = {
+    logstash: logstash,
+    email: email
+}
