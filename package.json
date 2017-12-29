@@ -10,8 +10,9 @@
     "build": "rm -rf lib && babel src -d lib && cp -rf src/views lib/views",
     "serve": "node lib/app.js",
     "pm2": "pm2 start lib/app.js",
-    "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc src/** --ignore-pattern **/*.yml --quiet --fix"
+    "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc src/** --ignore-pattern **/*.yml"
   },
+  "precommit.silent": true,
   "pre-commit": ["lint"],
   "author": "wumin",
   "license": "MIT",
