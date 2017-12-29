@@ -1,6 +1,13 @@
 import user from '../services/user.js'
 
 
+// GET     /                 ->  index
+// GET     /new              ->  new
+// POST    /                 ->  create
+// GET     /:id              ->  show
+// GET     /:id/edit         ->  edit
+// PUT     /:id              ->  update
+// DELETE  /:id              ->  destroy
 exports.index = async function (req, res) {
   let result = 0
   console.log('conn')
@@ -13,10 +20,15 @@ exports.index = async function (req, res) {
 };
 
 exports.new = function (req, res) {
-  res.send('new forum');
+  // res.send('new forum');
+  res.json({id: 1})
 };
 
 exports.create = function (req, res) {
+  console.log(req)
+  console.log(req.params)
+  console.log(req.body)
+  console.log(req.route)
   res.send('create forum');
 };
 

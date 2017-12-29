@@ -12,6 +12,7 @@
     "pm2": "pm2 start lib/app.js",
     "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc src/** --ignore-pattern **/*.yml --quiet --fix"
   },
+  "pre-commit": ["lint"],
   "author": "wumin",
   "license": "MIT",
   "dependencies": {
@@ -23,6 +24,7 @@
     "express-resource": "^1.0.0",
     "jade": "^1.11.0",
     "log4js": "^2.4.1",
+    "morgan": "^1.9.0",
     "mysql": "^2.15.0",
     "orm": "^4.0.1",
     "redis": "^2.8.0"
@@ -39,6 +41,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "eslint": "^4.14.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "pre-commit": "^1.2.2"
   }
 }

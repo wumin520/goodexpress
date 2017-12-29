@@ -5,6 +5,8 @@ require('express-resource')
 const app = express()
 const orm = require('orm')
 const compression = require('compression')
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
 import Db from './db'
 
 let resolve = (src) => {
@@ -47,6 +49,14 @@ app.use(orm.express(config.db.orm_options, {
   }
 }));
 app.use(compression())
+
+app.use(morgan('combined'))
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
   res.render('index', { title: 'Hey', message: 'Hello there!'});

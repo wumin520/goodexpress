@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# .git/hooks/pre-commit
+
+skipeslint=$(git config --bool hooks.skipeslint)
+if [ "$skipeslint" != "true" ]; then
+
+  git diff --cached --name-only -- "*.js" "*.vue" | xargs node_modules/eslint/bin/eslint.js {}
+  if [ "$?" -ne 0 ]; then
+    cat <<EOF
+Please fix the eslint errors before comitting. Or disable this check using:
+
+  git config hooks.skipeslint true
+EOF
+
+    exit 1
+  fi
+
+fi
