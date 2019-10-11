@@ -73,3 +73,22 @@ docker build -t username/repository:tag .
 * "off" or 0 - turn the rule off
 * "warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
 * "error" or 2 - turn the rule on as an error (exit code will be 1)
+
+
+```bash
+#检测后台进程是否存在
+ps -ef |grep redis
+
+#检测6379端口是否在监听
+netstat -lntp | grep 6379
+```
+
+### 版本格式：主版号.次版号.修订号，版号递增规则如下：
+* 主版号：当你做了不相容的 API 修改，
+* 次版号：当你做了向下相容的功能性新增，
+* 修订号：当你做了向下相容的问题修正。
+* 先行版号及版本编译资讯可以加到「主版号.次版号.修订号」的后面，作为延伸。
+
+
+### npm淘宝镜像设置
+* npm config set registry https://registry.npm.taobao.org

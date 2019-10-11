@@ -1,10 +1,10 @@
 {
-  "name": "myapp1",
+  "name": "express-max",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run lint && nodemon src/app.js --exec babel-node",
+    "start": "nodemon src/app.js --exec babel-node",
     "dev": "export NODE_ENV=development && export DEBUG=express:* && supervisor -w server,routes,app.js app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf lib && babel src -d lib && cp -rf src/views lib/views",
@@ -12,17 +12,21 @@
     "pm2": "pm2 start lib/app.js",
     "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc src/** --ignore-pattern **/*.yml"
   },
-  "precommit.silent": true,
-  "pre-commit": ["lint"],
+  // "precommit.silent": true,
+  // "pre-commit": [
+  //   "lint"
+  // ],
   "author": "wumin",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
+    "connect-redis": "^3.3.2",
     "connect-timeout": "^1.9.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "express-resource": "^1.0.0",
+    "express-session": "^1.15.6",
     "jade": "^1.11.0",
     "log4js": "^2.4.1",
     "morgan": "^1.9.0",

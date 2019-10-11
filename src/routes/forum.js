@@ -21,7 +21,14 @@ exports.index = async function (req, res) {
 
 exports.new = function (req, res) {
   // res.send('new forum');
-  res.json({id: 1})
+  throw new Error('error replace')
+  let result = {}
+  req.models.person.getAsync(1).then((rows) => {
+    console.log('rows: ', rows.id)
+    result = rows
+    res.send(JSON.stringify(result))
+
+  })
 };
 
 exports.create = function (req, res) {

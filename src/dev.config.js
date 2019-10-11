@@ -4,7 +4,7 @@ const orm_options = {
   password: '',
   host: '127.0.0.1',
   port: '3307',
-  database: '',
+  database: 'mytest', // default database
   query: { pool: true }
 }
 
@@ -13,7 +13,12 @@ const mysql_options = {
   port     : '3307',
   user     : 'root',
   password : '',
-  database: ''
+  database: 'advertisers'
+}
+
+export const redis_conf = {
+  host: '127.0.0.1',
+  port: 6379
 }
 
 export const  db = {
